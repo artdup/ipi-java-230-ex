@@ -3,8 +3,15 @@ package com.ipiecoles.java.java230.model;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDate;
 
+import javax.persistence.*;
 import java.util.Objects;
-
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+//@Table inutile car la table s'appelle employe
+public abstract class Employe {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)//AUTO ?
+	private Long id;
 public abstract class Employe {
 
 	private Long id;
@@ -39,7 +46,7 @@ public abstract class Employe {
 	public Integer getNbConges() {
 		return Entreprise.NB_CONGES_BASE;
 	}
-	
+	public abstract Double getPrimeAnnuelle();
 	public abstract Double getPrimeAnnuelle();
 
 	public void augmenterSalaire(Double pourcentage) {
